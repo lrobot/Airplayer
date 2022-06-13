@@ -9,9 +9,13 @@ class BaseMediaBackend(object):
         self._port = port
         self._username = username
         self._password = password
-        
+        self._configs = {}    
         self.log = logging.getLogger('airplayer')
-        
+    def set_config(self, config_key, config_value):
+        self._configs[config_key] = config_value
+    def get_config(self, config_key):
+        return self._configs[config_key]
+
     def _http_request(self, req):
         """
         Perform a http request andapply HTTP Basic authentication headers,

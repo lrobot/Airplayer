@@ -20,6 +20,7 @@ from protocol_handler import AirplayProtocolHandler
 import settings
 import utils
 from pidfile import Pidfile
+import json
 
 class Application(object):
     
@@ -168,7 +169,7 @@ class Application(object):
         self._protocol_handler = AirplayProtocolHandler(self._port, self._media_backend)
         self._protocol_handler.start()
                 
-    def run(self):
+    def run(self, token="", chatid=""):
         """
         Run the application.
         Perform some bootstrapping, fork/daemonize if necessary.
@@ -189,7 +190,8 @@ class Application(object):
 
         self._register_bonjour()
         self._register_media_backend()
-
+        self._media_backend.set_config('token', token)
+        self._media_backend.set_config('chatid', chatid)
         self._media_backend.notify_started()
         self._start_protocol_handler()
     
@@ -209,13 +211,22 @@ class Application(object):
         self.shutdown()    
 
 def main():
-    app = Application(settings.AIRPLAYER_PORT)
-    
-    try:
-        app.run()
-    except Exception, e:
-        raise e
-        sys.exit(1)
+    config_file = os.path.join(os.path.dirname(os.path.realpath(__file__)),'.config.json')
+    with open(file) as fp:
+        if(fp==None):
+            sys.exit(2)
+        else:
+            try:
+                configjson = json.load(fp)
+                app.
+                app.run()
+                app = Application(settings.AIRPLAYER_PORT)
+            except Exception, e:
+                raise e
+                sys.exit(1)            
+
+        
+
 
 if __name__ == '__main__':
     main()

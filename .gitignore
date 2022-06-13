@@ -1,8 +1,16 @@
 *.pyc
+.env
+.env.json
+.config
+.config.json
+venv/
+.vscode/
+
 
 # OS generated files #
 ######################
 *.DS_Store?
+.DS_Store
 ehthumbs.db
 Icon?
 Thumbs.db
