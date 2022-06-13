@@ -1,8 +1,36 @@
+
+
+Name = "QdownloadApplyTV"
+
+dev_modal = 'AppleTV3,1'
+
+MAC_ADDR='58:55:CA:1A:E2:88'
+
+server_ver='150.33'
+
 DEVICE_INFO = {
-    'deviceid' : 'FF:FF:FF:FF:FF:FF',
-    'features' : '0x77',
-    'model' : 'AppleTV2,1',
-    'srcvers' : '101.10'
+    'deviceid' : MAC_ADDR,
+    'features' : '0x3FFF',
+    'model' : dev_modal,
+    'srcvers' : server_ver
+}
+
+raop_info = {
+  "txtvers":"1",
+  "ch":"2",
+  "cn":"0,1,2,3",
+  "da":"true",
+  "et":"0,3,5",
+  "md":"0,1,2",
+  "pw":"false",
+  "sv":"false",
+  "sr":"44100",
+  "ss":"16",
+  "tp":"UDP",
+  "vn":"65537",
+  "vs":server_ver,
+  "am": dev_modal,
+  "sf":"0x4"
 }
 
 SLIDESHOW_FEATURES = '<?xml version="1.0" encoding="UTF-8"?>\
