@@ -1,5 +1,5 @@
 import select
-from pybonjour import pybonjour
+import pybonjour
 import logging
 import appletv
 
