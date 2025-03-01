@@ -7,9 +7,9 @@ if [ -z "${AP2IFACE}" ]; then
     export AP2IFACE='wlan0'
 fi
 
-NO_VOLUME_MANAGEMENT_FLAG=""
+no_volume_management_flag=""
 if [ "${NO_VOLUME_MANAGEMENT}" = "true" ]; then
-    NO_VOLUME_MANAGEMENT_FLAG='--no-volume-management'
+    no_volume_management_flag='--no-volume-management'
 fi
 
 
@@ -26,5 +26,5 @@ dbus-daemon --nopidfile --system --print-address
 
 # Start AirPlay 2 service
 cd /airplay2
-echo python3 ap2-receiver.py -m ${AP2HOSTNAME} -n ${AP2IFACE} ${NO_VOLUME_MANAGEMENT_FLAG}
-exec python3 ap2-receiver.py -m ${AP2HOSTNAME} -n ${AP2IFACE} ${NO_VOLUME_MANAGEMENT_FLAG}
+echo python3 ap2-receiver.py -m ${AP2HOSTNAME} -n ${AP2IFACE} ${no_volume_management_flag}
+exec python3 ap2-receiver.py -m ${AP2HOSTNAME} -n ${AP2IFACE} ${no_volume_management_flag}
