@@ -1,6 +1,6 @@
 
 
-Name = "QdownloadApplyTV"
+Name = "qtv"
 
 dev_modal = 'AppleTV3,1'
 
