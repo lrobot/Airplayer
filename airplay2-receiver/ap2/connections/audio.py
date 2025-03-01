@@ -498,9 +498,10 @@ class Audio:
         """
 
         if self.codec is not None:
-            self.codecContext = av.codec.CodecContext.create(self.codec)
+            # av.audio.codeccontext.AudioCodecContext
+            self.codecContext = av.codec.context.CodecContext.create(self.codec)
             self.codecContext.sample_rate = self.sample_rate
-            self.codecContext.channels = self.channel_count
+            self.codecContext.layout = av.audio.layout.AudioLayout('stereo' if self.channel_count == 2 else 'mono')
             self.codecContext.format = av.AudioFormat('s' + str(self.sample_size) + 'p')
         if ed is not None:
             self.codecContext.extradata = ed

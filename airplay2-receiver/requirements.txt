@@ -1,5 +1,6 @@
 netifaces
-zeroconf==0.38.3
+#zeroconf==0.38.3
+zeroconf==0.145.1
 biplist
 pycryptodome
 hexdump
@@ -8,4 +9,6 @@ hkdf
 # pynacl
 cryptography
 requests
-av==8.1.0
+#https://pyav.basswood-io.com/docs/stable/
+av==14.2
+pyaudio

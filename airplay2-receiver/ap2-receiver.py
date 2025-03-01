@@ -750,7 +750,7 @@ class AP2Handler(http.server.BaseHTTPRequestHandler):
                             for s in self.server.streams:
                                 if s.isAudio() and s.isInitialized():
                                     s.getAudioConnection().send("pause")
-                    except OSError:
+                    except OSError as e:
                         self.logger.error(f'SETRATEANCHORTIME error: {repr(e)}')
 
                     self.logger.info(self.pp.pformat(plist))
@@ -1191,6 +1191,7 @@ class AP2Handler(http.server.BaseHTTPRequestHandler):
 
 def register_mdns(mac, receiver_name, addresses):
     global MDNS_OBJ
+    SCR_LOG.info(f'mdns_props.feature:{mdns_props["features"]}')
 
     info = ServiceInfo(
         "_airplay._tcp.local.",
@@ -1315,8 +1316,8 @@ if __name__ == "__main__":
     mutexgroup = parser.add_mutually_exclusive_group()
 
     parser.add_argument("-fm", "--fakemac", help="Generate and use a random MAC for ethernet address.", action='store_true')
-    parser.add_argument("-m", "--mdns", help="mDNS name to announce", default="myap2")
-    parser.add_argument("-n", "--netiface", help="Network interface to bind to. Use the --list-interfaces option to list available interfaces.")
+    parser.add_argument("-m", "--mdns", help="mDNS name to announce", default="qairaudio")
+    parser.add_argument("-n", "--netiface", help="Network interface to bind to. Use the --list-interfaces option to list available interfaces.", default="en0")
     parser.add_argument("-nv", "--no-volume-management", help="Disable volume management", action='store_true')
     parser.add_argument("-npm", "--no-ptp-master", help="Stops this receiver from being announced as the PTP Master",
                         action='store_true')
@@ -1393,7 +1394,7 @@ if __name__ == "__main__":
     bitwise = args.ft or args.ftnot or args.ftor or args.ftxor or args.ftand
     # This param is mutex with args.features
     if bitwise:
-        if (bitwise == [0]):
+        if (bitwise == [999]):
             list_available_flags()
             exit(0)
         else:

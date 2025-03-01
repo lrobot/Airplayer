@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM lrobot/debian:bookworm
 
 RUN apt-get update -yy && \
     apt-get install -yy \
@@ -23,11 +23,12 @@ RUN apt-get update -yy && \
 	&& rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /airplay2/requirements.txt
-
+RUN pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 RUN pip3 install -r /airplay2/requirements.txt --no-cache-dir
 
 COPY ap2-receiver.py /airplay2/ap2-receiver.py
 COPY ap2 /airplay2/ap2
+COPY pairings /airplay2/pairings
 
 COPY docker/avahi-daemon.conf /etc/avahi/avahi-daemon.conf
 COPY docker/start.sh /
