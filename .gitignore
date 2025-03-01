@@ -1,0 +1,7 @@
+# Ignore everything in this directory
+*
+# Except these files
+!.gitignore
+!ap2-receiver.py
+!README.md
+!requirements.txt
